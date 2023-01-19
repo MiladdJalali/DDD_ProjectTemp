@@ -1,13 +1,12 @@
 ﻿using MediatR;
 
-namespace ProjectTemp.Domain
+namespace ProjectTemp.Domain;
+
+public interface IDomainEvent : INotification
 {
-    public interface IDomainEvent : INotification
-    {
-        Guid AggregateId { get; }
+    Guid AggregateId { get; }
 
-        DateTimeOffset EventTime { get; }
+    DateTimeOffset EventTime { get; }
 
-        Dictionary<string, object?> Flatten();
-    }
+    Dictionary<string, object?> Flatten();
 }

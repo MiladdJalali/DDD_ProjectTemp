@@ -1,46 +1,45 @@
 ﻿using ProjectTemp.Domain.Exceptions;
 
-namespace ProjectTemp.Domain
+namespace ProjectTemp.Domain;
+
+public abstract class Entity
 {
-    public abstract class Entity
+    private readonly List<IDomainEvent> domainEvents;
+
+    private bool canBeDeleted;
+
+    protected Entity()
     {
-        private readonly List<IDomainEvent> domainEvents;
+        domainEvents = new List<IDomainEvent>();
+    }
 
-        private bool canBeDeleted;
+    public IEnumerable<IDomainEvent> DomainEvents => domainEvents.AsReadOnly();
 
-        protected Entity()
-        {
-            domainEvents = new List<IDomainEvent>();
-        }
+    public bool CanBeDeleted()
+    {
+        return canBeDeleted;
+    }
 
-        public IEnumerable<IDomainEvent> DomainEvents => domainEvents.AsReadOnly();
+    public void ClearEvents()
+    {
+        domainEvents.Clear();
+    }
 
-        public bool CanBeDeleted()
-        {
-            return canBeDeleted;
-        }
+    protected void MarkAsDeleted()
+    {
+        canBeDeleted = true;
+    }
 
-        public void ClearEvents()
-        {
-            domainEvents.Clear();
-        }
+    protected void AddEvent(IDomainEvent domainEvent)
+    {
+        domainEvents.Add(domainEvent);
+    }
 
-        protected void MarkAsDeleted()
-        {
-            canBeDeleted = true;
-        }
+    protected static void CheckRule(IBusinessRule rule)
+    {
+        if (!rule.IsBroken())
+            return;
 
-        protected void AddEvent(IDomainEvent domainEvent)
-        {
-            domainEvents.Add(domainEvent);
-        }
-
-        protected static void CheckRule(IBusinessRule rule)
-        {
-            if (!rule.IsBroken())
-                return;
-
-            throw new DomainException(rule.Message, rule.Details);
-        }
+        throw new DomainException(rule.Message, rule.Details);
     }
 }

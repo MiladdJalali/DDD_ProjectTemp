@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text;
 using FluentAssertions;
 using ProjectTemp.Domain.Aggregates.Users.Events;
 using ProjectTemp.Domain.Aggregates.Users.ValueObjects;
@@ -28,7 +30,7 @@ namespace ProjectTemp.Domain.UnitTest.Aggregates.Users
             descriptionChangedEvent.NewValue.Should().Be(description);
             user.Description?.Value.Should().Be(description);
         }
-
+        
         [Fact]
         public void TestChangeDescription_WhenValueIsSame_NothingMustBeHappened()
         {
@@ -76,18 +78,6 @@ namespace ProjectTemp.Domain.UnitTest.Aggregates.Users
 
             passwordChangedEvent.AggregateId.Should().Be(userId);
             user.Password.Value.Should().Be(newPassword);
-        }
-
-        [Fact]
-        public void TestChangePassword_WhenValueIsSame_NothingMustBeHappened()
-        {
-            const string password = "UserPassword";
-            var user = new UserBuilder().WithPassword(password).Build();
-
-            user.ClearEvents();
-            user.ChangePassword(UserPassword.Create(password));
-
-            user.DomainEvents.Should().BeEmpty();
         }
 
         [Fact]

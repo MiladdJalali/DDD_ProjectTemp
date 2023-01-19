@@ -1,11 +1,10 @@
-﻿namespace ProjectTemp.Domain
+﻿namespace ProjectTemp.Domain;
+
+public interface IBusinessRule
 {
-    public interface IBusinessRule
-    {
-        string Message { get; }
+    string Message { get; }
 
-        string Details { get; }
+    string Details { get; }
 
-        bool IsBroken();
-    }
+    bool IsBroken();
 }

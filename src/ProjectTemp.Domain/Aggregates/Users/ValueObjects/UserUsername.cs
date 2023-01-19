@@ -1,25 +1,24 @@
 ﻿using ProjectTemp.Domain.Aggregates.Users.Rules;
 
-namespace ProjectTemp.Domain.Aggregates.Users.ValueObjects
+namespace ProjectTemp.Domain.Aggregates.Users.ValueObjects;
+
+public class UserUsername : ValueObject
 {
-    public class UserUsername : ValueObject
+    private UserUsername()
     {
-        private UserUsername()
-        {
-        }
+    }
 
-        public string? Value { get; private init; }
+    public string? Value { get; private init; }
 
-        public static UserUsername Create(string value)
-        {
-            CheckRule(new UserUsernameCannotBeEmptyRule(value));
+    public static UserUsername Create(string value)
+    {
+        CheckRule(new UserUsernameCannotBeEmptyRule(value));
 
-            return new UserUsername { Value = value };
-        }
+        return new UserUsername {Value = value};
+    }
 
-        protected override IEnumerable<object?> GetAtomicValues()
-        {
-            yield return Value;
-        }
+    protected override IEnumerable<object?> GetAtomicValues()
+    {
+        yield return Value;
     }
 }

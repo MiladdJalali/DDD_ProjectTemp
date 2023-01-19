@@ -1,12 +1,11 @@
 ﻿using ProjectTemp.Domain.Aggregates.Users.ValueObjects;
 
-namespace ProjectTemp.Domain.Aggregates.Users.Events
+namespace ProjectTemp.Domain.Aggregates.Users.Events;
+
+public class UserDeletedEvent : BaseDomainEvent
 {
-    public class UserDeletedEvent : BaseDomainEvent
+    public UserDeletedEvent(UserId userId)
+        : base(userId.Value)
     {
-        public UserDeletedEvent(UserId userId)
-            : base(userId.Value)
-        {
-        }
     }
 }

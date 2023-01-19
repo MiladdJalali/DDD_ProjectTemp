@@ -1,25 +1,24 @@
 ﻿using ProjectTemp.Domain.Aggregates.Users.Rules;
 
-namespace ProjectTemp.Domain.Aggregates.Users.ValueObjects
+namespace ProjectTemp.Domain.Aggregates.Users.ValueObjects;
+
+public class UserPassword : ValueObject
 {
-    public class UserPassword : ValueObject
+    private UserPassword()
     {
-        private UserPassword()
-        {
-        }
+    }
 
-        public string? Value { get; private init; }
+    public string? Value { get; private init; }
 
-        public static UserPassword Create(string value)
-        {
-            CheckRule(new UserPasswordCannotBeEmptyRule(value));
+    public static UserPassword Create(string value)
+    {
+        CheckRule(new UserPasswordCannotBeEmptyRule(value));
 
-            return new UserPassword { Value = value };
-        }
+        return new UserPassword {Value = value};
+    }
 
-        protected override IEnumerable<object?> GetAtomicValues()
-        {
-            yield return Value;
-        }
+    protected override IEnumerable<object?> GetAtomicValues()
+    {
+        yield return Value;
     }
 }

@@ -1,26 +1,25 @@
-﻿namespace ProjectTemp.Domain.Aggregates.Users.ValueObjects
+﻿namespace ProjectTemp.Domain.Aggregates.Users.ValueObjects;
+
+public class UserId : ValueObject
 {
-    public class UserId : ValueObject
+    private UserId()
     {
-        private UserId()
-        {
-        }
+    }
 
-        public Guid Value { get; private init; }
+    public Guid Value { get; private init; }
 
-        public static UserId Create(Guid value)
-        {
-            return new() { Value = value };
-        }
+    public static UserId Create(Guid value)
+    {
+        return new UserId {Value = value};
+    }
 
-        public UserId Clone()
-        {
-            return Create(Value);
-        }
+    public UserId Clone()
+    {
+        return Create(Value);
+    }
 
-        protected override IEnumerable<object?> GetAtomicValues()
-        {
-            yield return Value;
-        }
+    protected override IEnumerable<object?> GetAtomicValues()
+    {
+        yield return Value;
     }
 }
