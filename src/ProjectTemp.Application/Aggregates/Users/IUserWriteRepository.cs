@@ -6,7 +6,7 @@ public interface IUserWriteRepository
 {
     void Add(User user);
 
-    Task<User> GetByUsername(string username, CancellationToken cancellationToken = default);
+    Task<User?> GetByUsername(string username, CancellationToken cancellationToken = default);
 
     void Remove(User user);
 }

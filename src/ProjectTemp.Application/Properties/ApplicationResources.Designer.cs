@@ -22,7 +22,7 @@ namespace ProjectTemp.Application.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ApplicationResources {
+    public class ApplicationResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ProjectTemp.Application.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProjectTemp.Application.Properties.ApplicationResources", typeof(ApplicationResources).Assembly);
@@ -51,7 +51,7 @@ namespace ProjectTemp.Application.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ProjectTemp.Application.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Unable to delete system defined users.
         /// </summary>
-        internal static string User_UnableToDeleteSystemDefined {
+        public static string User_UnableToDeleteSystemDefined {
             get {
                 return ResourceManager.GetString("User_UnableToDeleteSystemDefined", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace ProjectTemp.Application.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Unable to find user.
         /// </summary>
-        internal static string User_UnableToFind {
+        public static string User_UnableToFind {
             get {
                 return ResourceManager.GetString("User_UnableToFind", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace ProjectTemp.Application.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Unable to update system defined users.
         /// </summary>
-        internal static string User_UnableToUpdateSystemDefined {
+        public static string User_UnableToUpdateSystemDefined {
             get {
                 return ResourceManager.GetString("User_UnableToUpdateSystemDefined", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace ProjectTemp.Application.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Username cannot start with underscore.
         /// </summary>
-        internal static string User_UsernameCannotStartWithUnderscore {
+        public static string User_UsernameCannotStartWithUnderscore {
             get {
                 return ResourceManager.GetString("User_UsernameCannotStartWithUnderscore", resourceCulture);
             }

@@ -9,16 +9,8 @@
   <ItemGroup>
     <ProjectReference Include="..\ProjectTemp.Domain\ProjectTemp.Domain.csproj" />
   </ItemGroup>
-	
-  <ItemGroup>
-	<PackageReference Include="Mediator.Abstractions" Version="2.0.27-rc" />
-	<PackageReference Include="Mediator.SourceGenerator" Version="2.0.27-rc">
-		<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-  </ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
     <Compile Update="Properties\ApplicationResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -28,7 +20,7 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Properties\ApplicationResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ApplicationResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
