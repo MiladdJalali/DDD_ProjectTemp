@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using Mediator;
+﻿using Mediator;
 using Microsoft.EntityFrameworkCore;
 using ProjectTemp.Application;
 using ProjectTemp.Domain;
@@ -56,7 +55,6 @@ namespace ProjectTemp.Infrastructure.Services
                     throw new InvalidOperationException();
 
                 SetAuditingProperties();
-                //WriteAudits();
 
                 var domainEvents = entries
                     .Where(i => i.Entity.DomainEvents.Any())
@@ -98,27 +96,5 @@ namespace ProjectTemp.Infrastructure.Services
                 entry.Property("Updated").CurrentValue = systemDateTime.UtcNow;
             }
         }
-
-        //TODO: Implement audits
-        //private void WriteAudits()
-        //{
-        //    var domainEvents = dbContext.ChangeTracker.Entries<Entity>()
-        //        .Where(i => i.Entity.DomainEvents.Any())
-        //        .SelectMany(i => i.Entity.DomainEvents)
-        //        .ToArray();
-
-        //    foreach (var domainEvent in domainEvents)
-        //        dbContext.Audits.Add(new()
-        //        {
-        //            Id = Guid.NewGuid(),
-        //            AggregateId = domainEvent.AggregateId,
-        //            Action = domainEvent.GetType().Name,
-        //            Time = domainEvent.EventTime,
-        //            Data = JsonSerializer.Serialize(domainEvent.Flatten()),
-        //            UserId = userDescriptor.GetId(),
-        //            Client = userDescriptor.GetClient(),
-        //            ClientAddress = userDescriptor.GetClientAddress()
-        //        });
-        //}
     }
 }

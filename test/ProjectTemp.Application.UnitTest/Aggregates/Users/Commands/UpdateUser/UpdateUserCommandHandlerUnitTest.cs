@@ -27,7 +27,7 @@ public class UpdateUserCommandHandlerUnitTest
 
         systemEntityDetectorMock.Setup(i => i.IsSystemEntity(command.CurrentUsername)).Returns(true);
 
-        func.Should().Throw<DomainException>()
+        func.Should().ThrowAsync<DomainException>()
             .WithMessage(ApplicationResources.User_UnableToUpdateSystemDefined);
     }
 
@@ -46,7 +46,7 @@ public class UpdateUserCommandHandlerUnitTest
 
         systemEntityDetectorMock.Setup(i => i.IsSystemEntity(command.Username)).Returns(true);
 
-        func.Should().Throw<DomainException>()
+        func.Should().ThrowAsync<DomainException>()
             .WithMessage(ApplicationResources.User_UsernameCannotStartWithUnderscore);
     }
 
@@ -71,7 +71,7 @@ public class UpdateUserCommandHandlerUnitTest
             .Setup(i => i.GetByUsername(command.CurrentUsername, CancellationToken.None))
             .ReturnsAsync(() => null);
 
-        func.Should().Throw<DomainException>()
+        func.Should().ThrowAsync<DomainException>()
             .WithMessage(ApplicationResources.User_UnableToFind);
     }
 }

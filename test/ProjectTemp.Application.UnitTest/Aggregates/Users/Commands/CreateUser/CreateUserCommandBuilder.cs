@@ -10,6 +10,7 @@ public static class CreateUserCommandBuilder
         {
             Username = "UserUsername",
             Password = "UserPassword",
+            ConfirmPassword = "UserPassword",
             Description = "UserDescription"
         };
     }

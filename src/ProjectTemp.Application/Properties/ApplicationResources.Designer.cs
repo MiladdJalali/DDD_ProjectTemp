@@ -61,6 +61,15 @@ namespace ProjectTemp.Application.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password and confirm password does not match.
+        /// </summary>
+        public static string User_PasswordAndConfirmPasswordDoesNotMatch {
+            get {
+                return ResourceManager.GetString("User_PasswordAndConfirmPasswordDoesNotMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to delete system defined users.
         /// </summary>
         public static string User_UnableToDeleteSystemDefined {

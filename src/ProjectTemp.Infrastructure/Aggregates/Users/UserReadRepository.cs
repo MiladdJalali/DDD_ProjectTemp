@@ -29,7 +29,8 @@ public class UserReadRepository : IUserReadRepository
                 ");
     }
 
-    public async ValueTask<UserQueryResult?> GetByUsername(string username,
+    public async ValueTask<UserQueryResult?> GetByUsername(
+        string username,
         CancellationToken cancellationToken = default)
     {
         return await dbContext.UserQueryResults.FromSqlRaw(@"

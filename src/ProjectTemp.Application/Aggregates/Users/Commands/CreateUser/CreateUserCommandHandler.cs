@@ -28,6 +28,9 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, strin
         if (systemEntityDetector.IsSystemEntity(request.Username))
             throw new DomainException(ApplicationResources.User_UsernameCannotStartWithUnderscore);
 
+        if (request.Password != request.ConfirmPassword)
+            throw new DomainException(ApplicationResources.User_PasswordAndConfirmPasswordDoesNotMatch);
+
         var user = User.Create(
             UserId.Create(Guid.NewGuid()),
             UserUsername.Create(request.Username),

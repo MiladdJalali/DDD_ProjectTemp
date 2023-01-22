@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="User_PasswordAndConfirmPasswordDoesNotMatch" xml:space="preserve">
+    <value>Password and confirm password does not match</value>
+  </data>
   <data name="User_UnableToDeleteSystemDefined" xml:space="preserve">
     <value>Unable to delete system defined users</value>
   </data>

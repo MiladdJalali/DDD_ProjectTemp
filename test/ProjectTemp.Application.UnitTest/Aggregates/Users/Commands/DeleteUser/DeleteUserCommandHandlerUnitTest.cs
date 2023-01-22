@@ -8,7 +8,6 @@ using ProjectTemp.Application.Aggregates.Users;
 using ProjectTemp.Application.Aggregates.Users.Commands.DeleteUser;
 using ProjectTemp.Application.Properties;
 using ProjectTemp.Domain.Exceptions;
-using ProjectTemp.Domain.UnitTest.Aggregates.Users.Builders;
 using Xunit;
 
 namespace ProjectTemp.Application.UnitTest.Aggregates.Users.Commands.DeleteUser;
@@ -20,7 +19,6 @@ public class DeleteUserCommandHandlerUnitTest
     {
         var systemEntityDetectorMock = new Mock<ISystemEntityDetector>();
         var command = DeleteUserCommandBuilder.Build();
-        var user = new UserBuilder().Build();
         var commandHandler = new DeleteUserCommandHandlerBuilder()
             .WithSystemEntityDetector(systemEntityDetectorMock.Object)
             .Build();
@@ -29,7 +27,7 @@ public class DeleteUserCommandHandlerUnitTest
 
         systemEntityDetectorMock.Setup(i => i.IsSystemEntity(command.Username)).Returns(true);
 
-        func.Should().Throw<DomainException>()
+        func.Should().ThrowAsync<DomainException>()
             .WithMessage(ApplicationResources.User_UnableToDeleteSystemDefined);
     }
 
@@ -52,6 +50,6 @@ public class DeleteUserCommandHandlerUnitTest
             .Setup(i => i.GetByUsername(command.Username, CancellationToken.None))
             .ReturnsAsync(() => null);
 
-        func.Should().Throw<DomainException>().WithMessage(ApplicationResources.User_UnableToFind);
+        func.Should().ThrowAsync<DomainException>().WithMessage(ApplicationResources.User_UnableToFind);
     }
 }

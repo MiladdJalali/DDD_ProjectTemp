@@ -19,6 +19,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTemp.Infrastructure", "src\ProjectTemp.Infrastructure\ProjectTemp.Infrastructure.csproj", "{B4586932-E8EB-4536-A64A-18A9FA459791}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{83ED6744-B8BB-43A0-912B-5277B4314C5F}"
+	ProjectSection(SolutionItems) = preProject
+		src\ProjectTemp.RestApi\Program.cs = src\ProjectTemp.RestApi\Program.cs
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTemp.Domain.UnitTest", "test\ProjectTemp.Domain.UnitTest\ProjectTemp.Domain.UnitTest.csproj", "{3292D080-2746-4ACA-B4C1-739A39E8E1D9}"
 EndProject
