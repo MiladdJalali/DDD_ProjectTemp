@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using ProjectTemp.Application.Aggregates.Users.Commands.CreateUser;
 using ProjectTemp.Application.Aggregates.Users.Commands.UpdateUser;
-using ProjectTemp.Application.Aggregates.Users.Queries;
 using ProjectTemp.Application.Aggregates.Users.Queries.GetUserCollection;
+using ProjectTemp.Application.Aggregates.Users.Queries;
 using ProjectTemp.RestApi.V1.Models;
 
 namespace ProjectTemp.RestApi.V1.Aggregates.Users.Models

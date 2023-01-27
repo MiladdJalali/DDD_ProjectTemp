@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +21,7 @@ public static class DatabaseSeeder
         try
         {
             await unitOfWork.BeginTransaction().ConfigureAwait(false);
-            await SeedUsers(dbContext, configuration).ConfigureAwait(false);
+            SeedUsers(dbContext, configuration);
             await unitOfWork.CommitTransaction().ConfigureAwait(false);
         }
         catch
@@ -29,10 +30,9 @@ public static class DatabaseSeeder
         }
     }
 
-    private static async Task SeedUsers(WriteDbContext dbContext, IConfiguration configuration)
+    private static void SeedUsers(WriteDbContext dbContext, IConfiguration configuration)
     {
-        if (await dbContext.Users.AnyAsync(i => i.Id.Value == ApplicationConstants.AdminUserId)
-                .ConfigureAwait(false))
+        if (dbContext.Users.Any() && dbContext.Users.Any(i => i.Id.Value == ApplicationConstants.AdminUserId))
             return;
 
         dbContext.Users.Add(
