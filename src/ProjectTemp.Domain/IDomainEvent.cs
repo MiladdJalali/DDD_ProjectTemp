@@ -1,8 +1,8 @@
-﻿using Mediator;
+﻿//using Mediator;
 
 namespace ProjectTemp.Domain;
 
-public interface IDomainEvent : INotification
+public interface IDomainEvent //: INotification
 {
     Guid AggregateId { get; }
 

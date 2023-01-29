@@ -4,7 +4,7 @@ using ProjectTemp.Domain.Exceptions;
 
 namespace ProjectTemp.Application.Aggregates.Users.Commands.DeleteUser;
 
-public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand>
+public sealed class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand>
 {
     private readonly ISystemEntityDetector systemEntityDetector;
 
@@ -18,7 +18,7 @@ public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand>
         this.systemEntityDetector = systemEntityDetector;
     }
 
-    async ValueTask<Unit> IRequestHandler<DeleteUserCommand, Unit>.Handle(
+    public async ValueTask<Unit> Handle(
         DeleteUserCommand request,
         CancellationToken cancellationToken)
     {

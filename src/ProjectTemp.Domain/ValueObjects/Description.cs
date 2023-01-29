@@ -8,7 +8,7 @@ public class Description : ValueObject
 
     public string? Value { get; private init; }
 
-    public static Description? Create(string value)
+    public static Description? Create(string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
             return null;

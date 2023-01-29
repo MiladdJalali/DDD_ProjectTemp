@@ -6,7 +6,7 @@ using ProjectTemp.Domain.ValueObjects;
 
 namespace ProjectTemp.Application.Aggregates.Users.Commands.UpdateUser;
 
-public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
+public sealed class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
 {
     private readonly ISystemEntityDetector systemEntityDetector;
 
@@ -20,7 +20,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
         this.systemEntityDetector = systemEntityDetector;
     }
 
-    async ValueTask<Unit> IRequestHandler<UpdateUserCommand, Unit>.Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+    public async ValueTask<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
         if (systemEntityDetector.IsSystemEntity(request.CurrentUsername))
             throw new DomainException(ApplicationResources.User_UnableToUpdateSystemDefined);

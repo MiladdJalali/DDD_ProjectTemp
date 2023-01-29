@@ -2,7 +2,7 @@
 
 namespace ProjectTemp.Application.Aggregates.Users.Queries.GetUserCollection;
 
-public class GetUserCollectionQueryHandler :
+public sealed class GetUserCollectionQueryHandler :
     IRequestHandler<GetUserCollectionQuery, BaseCollectionResult<UserQueryResult>>
 {
     private readonly IUserReadRepository userReadRepository;
@@ -12,8 +12,7 @@ public class GetUserCollectionQueryHandler :
         this.userReadRepository = userReadRepository;
     }
 
-    ValueTask<BaseCollectionResult<UserQueryResult>>
-        IRequestHandler<GetUserCollectionQuery, BaseCollectionResult<UserQueryResult>>.Handle(
+    public ValueTask<BaseCollectionResult<UserQueryResult>> Handle(
             GetUserCollectionQuery request, 
             CancellationToken cancellationToken)
     {

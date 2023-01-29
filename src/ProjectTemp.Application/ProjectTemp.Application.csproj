@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -10,6 +10,14 @@
     <ProjectReference Include="..\ProjectTemp.Domain\ProjectTemp.Domain.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Mediator.Abstractions" Version="2.0.30" />
+		<PackageReference Include="Mediator.SourceGenerator" Version="2.0.30">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	
 	<ItemGroup>
     <Compile Update="Properties\ApplicationResources.Designer.cs">
       <DesignTime>True</DesignTime>

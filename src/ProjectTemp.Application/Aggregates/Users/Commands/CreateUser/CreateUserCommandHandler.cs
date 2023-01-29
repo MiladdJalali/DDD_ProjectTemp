@@ -7,7 +7,7 @@ using ProjectTemp.Domain.ValueObjects;
 
 namespace ProjectTemp.Application.Aggregates.Users.Commands.CreateUser;
 
-public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, string>
+public sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, string>
 {
     private readonly IUserWriteRepository userWriteRepository;
 
@@ -21,11 +21,11 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, strin
         this.systemEntityDetector = systemEntityDetector;
     }
 
-    ValueTask<string> IRequestHandler<CreateUserCommand, string>.Handle(
+    public ValueTask<string> Handle(
         CreateUserCommand request,
         CancellationToken cancellationToken)
     {
-        if (systemEntityDetector.IsSystemEntity(request.Username))
+        if (systemEntityDetector.IsSystemEntity(request.Username!))
             throw new DomainException(ApplicationResources.User_UsernameCannotStartWithUnderscore);
 
         if (request.Password != request.ConfirmPassword)
@@ -33,13 +33,13 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, strin
 
         var user = User.Create(
             UserId.Create(Guid.NewGuid()),
-            UserUsername.Create(request.Username),
-            UserPassword.Create(request.Password.GetHash()));
+            UserUsername.Create(request.Username!),
+            UserPassword.Create(request.Password!.GetHash()));
 
         user.ChangeDescription(Description.Create(request.Description));
 
         userWriteRepository.Add(user);
 
-        return ValueTask.FromResult(request.Username);
+        return ValueTask.FromResult(request.Username!);
     }
 }
