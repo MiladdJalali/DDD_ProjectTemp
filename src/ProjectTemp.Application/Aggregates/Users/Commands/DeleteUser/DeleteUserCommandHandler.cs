@@ -1,4 +1,4 @@
-﻿using Mediator;
+﻿using MediatR;
 using ProjectTemp.Application.Properties;
 using ProjectTemp.Domain.Exceptions;
 
@@ -18,7 +18,7 @@ public sealed class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand
         this.systemEntityDetector = systemEntityDetector;
     }
 
-    public async ValueTask<Unit> Handle(
+    public async Task<Unit> Handle(
         DeleteUserCommand request,
         CancellationToken cancellationToken)
     {

@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Mediator;
+using MediatR;
 using Moq;
 using ProjectTemp.Application.Aggregates.Users;
 using ProjectTemp.Application.Aggregates.Users.Commands.UpdateUser;

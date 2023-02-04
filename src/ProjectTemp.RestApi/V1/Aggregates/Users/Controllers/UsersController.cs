@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Mediator;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using ProjectTemp.Application.Aggregates.Users.Commands.CreateUser;
 using ProjectTemp.Application.Aggregates.Users.Commands.DeleteUser;
@@ -25,9 +25,9 @@ public class UsersController : ControllerBase
 
     private readonly IMediator mediator;
 
-    public UsersController(IMediator mediator, IMapper mapper)
+    public UsersController(IMediator MediatR, IMapper mapper)
     {
-        this.mediator = mediator;
+        this.mediator = MediatR;
         this.mapper = mapper;
     }
 
@@ -38,8 +38,9 @@ public class UsersController : ControllerBase
     {
         var command = mapper.Map<CreateUserCommand>(request);
         var username = await mediator.Send(command, cancellationToken).ConfigureAwait(false);
-        var query = new GetUserByUsernameQuery { Username = username };
-        var queryResult = await mediator.Send(query, cancellationToken).ConfigureAwait(false);
+        var queryResult = await mediator.Send(
+            new GetUserByUsernameQuery { Username = username },
+            cancellationToken).ConfigureAwait(false);
 
         return CreatedAtAction(
             nameof(GetUserByUsername),

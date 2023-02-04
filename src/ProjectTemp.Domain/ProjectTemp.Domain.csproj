@@ -6,6 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="MediatR" Version="11.1.0" />
+	</ItemGroup>
+
   <ItemGroup>
     <Compile Update="Properties\DomainResources.Designer.cs">
       <DesignTime>True</DesignTime>

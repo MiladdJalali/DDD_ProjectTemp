@@ -1,4 +1,4 @@
-﻿using Mediator;
+﻿using MediatR;
 
 namespace ProjectTemp.Application.Aggregates.Users.Queries.GetUserByUsername;
 
@@ -11,10 +11,10 @@ public sealed class GetUserByUsernameQueryHandler : IRequestHandler<GetUserByUse
         this.userReadRepository = userReadRepository;
     }
 
-    public ValueTask<UserQueryResult?> Handle(
+    public Task<UserQueryResult?> Handle(
         GetUserByUsernameQuery request,
         CancellationToken cancellationToken)
     {
-        return userReadRepository.GetByUsername(request.Username!, cancellationToken);
+        return userReadRepository.GetByUsername(request.Username!, cancellationToken);      
     }
 }

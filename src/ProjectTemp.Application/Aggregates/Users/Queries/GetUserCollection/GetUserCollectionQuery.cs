@@ -1,4 +1,4 @@
-﻿using Mediator;
+﻿using MediatR;
 
 namespace ProjectTemp.Application.Aggregates.Users.Queries.GetUserCollection;
 

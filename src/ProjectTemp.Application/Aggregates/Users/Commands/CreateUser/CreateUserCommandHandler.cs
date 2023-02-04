@@ -1,4 +1,4 @@
-﻿using Mediator;
+﻿using MediatR;
 using ProjectTemp.Application.Properties;
 using ProjectTemp.Domain.Aggregates.Users;
 using ProjectTemp.Domain.Aggregates.Users.ValueObjects;
@@ -21,7 +21,7 @@ public sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand
         this.systemEntityDetector = systemEntityDetector;
     }
 
-    public ValueTask<string> Handle(
+    public Task<string> Handle(
         CreateUserCommand request,
         CancellationToken cancellationToken)
     {
@@ -40,6 +40,6 @@ public sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand
 
         userWriteRepository.Add(user);
 
-        return ValueTask.FromResult(request.Username!);
+        return Task.FromResult(request.Username!);
     }
 }

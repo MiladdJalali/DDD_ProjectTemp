@@ -6,5 +6,5 @@ public interface IUserReadRepository
 {
     IQueryable<UserQueryResult> GetAll();
 
-    ValueTask<UserQueryResult?> GetByUsername(string username, CancellationToken cancellationToken = default);
+    Task<UserQueryResult?> GetByUsername(string username, CancellationToken cancellationToken = default);
 }

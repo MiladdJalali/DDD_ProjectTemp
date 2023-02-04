@@ -1,4 +1,4 @@
-﻿using Mediator;
+﻿using MediatR;
 
 namespace ProjectTemp.Infrastructure.Notifications;
 

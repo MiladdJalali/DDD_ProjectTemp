@@ -1,4 +1,4 @@
-﻿using Mediator;
+﻿using MediatR;
 
 namespace ProjectTemp.Application.Aggregates.Users.Queries.GetUserCollection;
 
@@ -12,7 +12,7 @@ public sealed class GetUserCollectionQueryHandler :
         this.userReadRepository = userReadRepository;
     }
 
-    public ValueTask<BaseCollectionResult<UserQueryResult>> Handle(
+    public Task<BaseCollectionResult<UserQueryResult>> Handle(
             GetUserCollectionQuery request, 
             CancellationToken cancellationToken)
     {
@@ -20,7 +20,7 @@ public sealed class GetUserCollectionQueryHandler :
 
         var resultWithPaging = result.ApplyPaging(request.PageSize, request.PageIndex).ToArray();
 
-        return ValueTask.FromResult(new BaseCollectionResult<UserQueryResult>
+        return Task.FromResult(new BaseCollectionResult<UserQueryResult>
         {
             Result = resultWithPaging,
             TotalCount = resultWithPaging.Length

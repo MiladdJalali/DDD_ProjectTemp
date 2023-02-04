@@ -1,4 +1,4 @@
-﻿using Mediator;
+﻿using MediatR;
 using ProjectTemp.Application.Properties;
 using ProjectTemp.Domain.Aggregates.Users.ValueObjects;
 using ProjectTemp.Domain.Exceptions;
@@ -20,22 +20,22 @@ public sealed class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand
         this.systemEntityDetector = systemEntityDetector;
     }
 
-    public async ValueTask<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
-        if (systemEntityDetector.IsSystemEntity(request.CurrentUsername))
+        if (systemEntityDetector.IsSystemEntity(request.CurrentUsername!))
             throw new DomainException(ApplicationResources.User_UnableToUpdateSystemDefined);
 
-        if (systemEntityDetector.IsSystemEntity(request.Username))
+        if (systemEntityDetector.IsSystemEntity(request.Username!))
             throw new DomainException(ApplicationResources.User_UsernameCannotStartWithUnderscore);
 
         var user = await userWriteRepository
-            .GetByUsername(request.CurrentUsername, cancellationToken)
+            .GetByUsername(request.CurrentUsername!, cancellationToken)
             .ConfigureAwait(false);
 
         if (user is null)
             throw new DomainException(ApplicationResources.User_UnableToFind);
 
-        user.ChangeUsername(UserUsername.Create(request.Username));
+        user.ChangeUsername(UserUsername.Create(request.Username!));
         user.ChangeDescription(Description.Create(request.Description));
 
         return Unit.Value;

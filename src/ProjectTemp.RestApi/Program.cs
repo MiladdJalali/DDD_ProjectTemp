@@ -1,5 +1,5 @@
 using Autofac.Core;
-using Mediator;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -7,17 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ProjectTemp.Application;
 using ProjectTemp.Application.Aggregates.Users;
-using ProjectTemp.Application.Aggregates.Users.Queries.GetUserCollection;
+using ProjectTemp.Application.Behaviors;
 using ProjectTemp.Application.Services;
 using ProjectTemp.Infrastructure;
 using ProjectTemp.Infrastructure.Aggregates.Users;
 using ProjectTemp.Infrastructure.Services;
 using ProjectTemp.RestApi;
 using ProjectTemp.RestApi.Services;
+using ProjectX.CoreDynamiX.Application.Behaviors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -64,7 +66,14 @@ builder.Services.AddScoped<IUserReadRepository, UserReadRepository>();
 builder.Services.AddTransient<IUserWriteRepository, UserWriteRepository>();
 
 builder.Services.AddApiVersioning(options => options.ReportApiVersions = true);
-builder.Services.AddMediator(options => options.ServiceLifetime = ServiceLifetime.Scoped);
+
+builder.Services.AddMediatR(typeof(ApplicationConstants).Assembly);
+
+builder.Services.AddSingleton(typeof(LoggingBehavior<,>), typeof(TransactionBehavior<,>));
+
+builder.Services.AddScoped(typeof(IPipelineBehavior<,>)).Add(typeof(TransactionBehavior<,>));
+//cfg.For(typeof(IPipelineBehavior<,>)).Add(typeof(InnerBehavior<,>));
+//cfg.For(typeof(IPipelineBehavior<,>)).Add(typeof(ConstrainedBehavior<,>));
 
 var app = builder.Build();
 

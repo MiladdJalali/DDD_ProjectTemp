@@ -1,4 +1,4 @@
-﻿using Mediator;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using ProjectTemp.Application;
 using ProjectTemp.Domain;
@@ -18,12 +18,12 @@ namespace ProjectTemp.Infrastructure.Services
 
         public UnitOfWork(
             WriteDbContext dbContext,
-            IMediator mediator,
+            IMediator mediatR,
             IUserDescriptor userDescriptor,
             ISystemDateTime systemDateTime)
         {
             this.dbContext = dbContext;
-            this.mediator = mediator;
+            this.mediator = mediatR;
             this.userDescriptor = userDescriptor;
             this.systemDateTime = systemDateTime;
         }

@@ -29,7 +29,7 @@ public class UserReadRepository : IUserReadRepository
                 ");
     }
 
-    public async ValueTask<UserQueryResult?> GetByUsername(
+    public async Task<UserQueryResult?> GetByUsername(
         string username,
         CancellationToken cancellationToken = default)
     {
@@ -40,8 +40,7 @@ public class UserReadRepository : IUserReadRepository
                                 COALESCE(UC.""Username"", U.""CreatorId""::TEXT) AS ""Creator"",
                                 COALESCE(UU.""Username"", U.""UpdaterId""::TEXT) AS ""Updater"",
                                 U.""Created"",
-                                U.""Updated"",
-                                U.""Version""
+                                U.""Updated""
                     FROM        ""Users"" AS U
                     LEFT JOIN   ""Users""       AS UC   ON U.""CreatorId""      = UC.""Id""
                     LEFT JOIN   ""Users""       AS UU   ON U.""UpdaterId""      = UU.""Id""
