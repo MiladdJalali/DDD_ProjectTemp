@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ProjectX.CoreDynamiX.RestApi": {
+    "ProjectTemp.RestApi": {
       "applicationUrl": "http://localhost:5000",
       "commandName": "Project",
       "environmentVariables": {

@@ -14,7 +14,7 @@ namespace ProjectTemp.Application.UnitTest.Aggregates.Users.Commands.CreateUser;
 public class CreateUserCommandHandlerUnitTest
 {
     [Fact]
-    public async Task TestHandle_WhenEverythingIsOk_FullNameMustBeReturned()
+    public async Task TestHandle_WhenEverythingIsOk_UsernameMustBeReturned()
     {
         var command = CreateUserCommandBuilder.Build();
         var commandHandler = new CreateUserCommandHandlerBuilder().Build();

@@ -1,13 +1,10 @@
-using Autofac.Core;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ProjectTemp.Application;
@@ -19,7 +16,6 @@ using ProjectTemp.Infrastructure.Aggregates.Users;
 using ProjectTemp.Infrastructure.Services;
 using ProjectTemp.RestApi;
 using ProjectTemp.RestApi.Services;
-using ProjectX.CoreDynamiX.Application.Behaviors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,9 +65,11 @@ builder.Services.AddApiVersioning(options => options.ReportApiVersions = true);
 
 builder.Services.AddMediatR(typeof(ApplicationConstants).Assembly);
 
-builder.Services.AddSingleton(typeof(LoggingBehavior<,>), typeof(TransactionBehavior<,>));
+//builder.Services.AddSingleton(typeof(LoggingBehavior<,>), typeof(TransactionBehavior<,>));
 
-builder.Services.AddScoped(typeof(IPipelineBehavior<,>)).Add(typeof(TransactionBehavior<,>));
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehavior<,>));
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+
 //cfg.For(typeof(IPipelineBehavior<,>)).Add(typeof(InnerBehavior<,>));
 //cfg.For(typeof(IPipelineBehavior<,>)).Add(typeof(ConstrainedBehavior<,>));
 
@@ -99,3 +97,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

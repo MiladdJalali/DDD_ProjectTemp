@@ -1,7 +1,6 @@
 ﻿using MediatR;
-using ProjectTemp.Application;
 
-namespace ProjectX.CoreDynamiX.Application.Behaviors
+namespace ProjectTemp.Application.Behaviors
 {
     public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
